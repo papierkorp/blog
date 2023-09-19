@@ -70,8 +70,6 @@ words_per_minute: 180
 navigation:
   - title: Home
     url: /index.html
-  - title: Categories
-    url: /categories.html
   - title: Tags
     url: /tags.html
   - title: Archive
@@ -87,26 +85,14 @@ footer_links:
   - title: GitHub
     url: https://github.com/papierkorp
     icon: fa fa-github
-  - title: Email
-    url: mailto:xxx@test.de
-    icon: fa fa-envelope
-  - title: Twitter
-    url: https://twitter.com
-    icon: fa fa-twitter
-  - title: Facebook
-    url: https://facebook.com
-    icon: fa fa-facebook
-  - title: Instagram
-    url: https://instagram.com
-    icon: fa fa-instagram
   - title: Impressum
     url: /impressum.html
 
 footer_sidebar:
   arrangement:
   - description
-  - tags
   - recentposts
+  - tags
   description:
     enabled: true
   tags:
@@ -115,10 +101,10 @@ footer_sidebar:
     columns: 3
   recentposts:
     enabled: true
-    count: 15
-    columns: 3
+    count: 5
+    columns: 1
 
-paginate: 5
+paginate: 7
 paginate_path: "/:num/"
 
 include: [".md"]
