@@ -36,7 +36,7 @@ url: "https://papierkorp.github.io" # the base hostname & protocol for your site
 github_username: papierkorp
 
 # Build settings
-remote_theme: papierkorp/jekyll-theme-horizon-flow@1.0.3
+remote_theme: papierkorp/jekyll-theme-horizon-flow@1.0.4
 plugins:
   - jekyll-feed
   - jekyll-paginate
@@ -97,12 +97,8 @@ footer_sidebar:
     enabled: true
   tags:
     enabled: true
-    count: 100
-    columns: 3
   recentposts:
     enabled: true
-    count: 5
-    columns: 1
 
 paginate: 7
 paginate_path: "/:num/"
@@ -122,7 +118,6 @@ defaults:
     scope:
       path: "_posts"
     values:
-      toc: yes
       display_toc: true
 
 permalink: /posts/:title #remove date from link
