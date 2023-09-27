@@ -89,6 +89,7 @@ footer_links:
     url: /impressum.html
 
 footer_sidebar:
+  auto: true
   arrangement:
   - description
   - recentposts
@@ -119,5 +120,6 @@ defaults:
       path: "_posts"
     values:
       display_toc: true
+      display_toc2: true
 
 permalink: /posts/:title #remove date from link

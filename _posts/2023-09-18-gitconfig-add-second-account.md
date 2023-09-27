@@ -182,7 +182,7 @@ Linux:
     excludesfile = ~/.gitignore
 ```
 
-You can use all [gitconfig] Settings from [here](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
+You can use all [gitconfig](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) Settings from [here](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
 
 
 ## .gitconfig.work
@@ -227,7 +227,7 @@ If you dont want to use the SSH config and do it quick and dirty you can do it l
     #sshCommand = "ssh -i ~/.ssh/id_rsa_work" #Linux SSH command
 ```
 
-You can use all [gitconfig] Settings from [here](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
+You can use all [gitconfig](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) Settings from [here](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
 
 ## .gitconfig.private
 
@@ -251,7 +251,7 @@ In the example above we are using the same folder as the .gitconfig file, so now
 
 For the details take a look in the section where we configured the [first](#.gitconfig.work) gitconfig file
 
-You can use all [gitconfig] Settings from [here](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
+You can use all [gitconfig](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup) Settings from [here](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup).
 
 # Debugging
 
