@@ -8,4 +8,4 @@ subtitle: "I created a single Image, which can be openend on the second Screen w
 
 # Image
 
-{{ '/assets/gaming/cs2/essential_mirage_smokes_in_one_file.png' | relative_url }}
+![Mirage Smokes](/assets/gaming/cs2/essential_mirage_smokes_in_one_file.png)
