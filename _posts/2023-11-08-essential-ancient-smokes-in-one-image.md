@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Essential CS2 Mirage Smokes in a single Image"
+title: "Essential CS2 Ancient Smokes in a single Image"
 date: 2023-11-08
 tags: gaming cs2
-subtitle: "I created a single Image, which can be openend on the second Screen with essential CS2 Mirage Smokes"
+subtitle: "I created a single Image, which can be openend on the second Screen with essential CS2 Ancient Smokes"
 ---
 
 # Introduction
@@ -14,11 +14,11 @@ I can just recommend using [cs2.app](https://www.cs2.app/) of [Youtube - nartout
 
 I dont think I will update this Image any time soon.
 
-![Mirage Smokes](/blog/assets/gaming/cs2/essential_mirage_smokes_in_one_file.png)
+![Ancient Smokes](/blog/assets/gaming/cs2/essential_ancient_smokes_in_one_file.png)
 
 # .psd Download
 
-Since im not really interested in Updating my Image, here you go with the Source File: [essential_mirage_smokes_in_one_file.psd](/blog/assets/gaming/cs2/essential_mirage_smokes_in_one_file.psd)
+Since im not really interested in Updating my Image, here you go with the Source File: [essential_ancient_smokes_in_one_file.psd](/blog/assets/gaming/cs2/essential_ancient_smokes_in_one_file.psd)
 
 
 
