@@ -79,6 +79,8 @@ navigation:
 
 # Footer Links
 footer_links:
+  - title: https://hits.dwyl.com/papierkorp/blog.svg?style=flat-square
+    url: http://hits.dwyl.com/papierkorp/blog
   - title: Feed
     url: /feed.xml
     icon: fa fa-rss
