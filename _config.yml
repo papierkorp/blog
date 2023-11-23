@@ -97,11 +97,11 @@ footer_sidebar:
   - recentposts
   - tags
   description:
-    enabled: true
+    enabled: false
   tags:
-    enabled: true
+    enabled: false
   recentposts:
-    enabled: true
+    enabled: false
 
 paginate: 7
 paginate_path: "/:num/"
