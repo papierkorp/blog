@@ -36,7 +36,7 @@ url: "https://papierkorp.github.io" # the base hostname & protocol for your site
 github_username: papierkorp
 
 # Build settings
-remote_theme: papierkorp/jekyll-theme-horizon-flow@1.0.8
+remote_theme: papierkorp/jekyll-theme-horizon-flow@1.1.0
 plugins:
   - jekyll-feed
   - jekyll-paginate
