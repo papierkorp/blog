@@ -290,3 +290,9 @@ func _ready():
     turn_queue.initalize()
 ```
 
+
+# File download
+
+I know I could have posted it on github, but nah so here you go with the zip file:
+
+[Example Godot Project](/blog/assets/gamedev/godot/turn_based_example.zip)
