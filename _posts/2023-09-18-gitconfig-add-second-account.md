@@ -4,6 +4,7 @@ title: "How to add a second Account to the gitconfig"
 date: 2023-09-18
 tags: git howto
 subtitle: "This shows how you can use a work and a private git Account in one Workspace based on SSH Keys on Windows and Linux."
+comments_id: 2
 ---
 
 # How it works
