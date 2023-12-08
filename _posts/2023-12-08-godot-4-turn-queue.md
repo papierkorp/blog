@@ -4,6 +4,7 @@ title: "How to create a Turn-Based Game in Godot 4"
 date: 2023-12-08
 tags: gamedev godot howto
 subtitle: "How to create a flexible Turn-Queue in Godot 4.2"
+display_toc: false
 comments_id: 3
 ---
 # Create a Turn Based Game in Godot 4.2
