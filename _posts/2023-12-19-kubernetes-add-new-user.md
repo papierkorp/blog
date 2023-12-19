@@ -1,15 +1,11 @@
 ---
 layout: post
-title: "How to add Users to a Kubernetes Cluster with a certificate Authentication"
-date: 2023-09-18
+title: "How to add Users to a Kubernetes Cluster with a certificate Authentication and export to a kubeconfig file"
+date: 2023-12-19
 tags: kubernetes howto devops
 subtitle: "Step by Step Tutorial on how to add Users to your Kubernetes-Cluster indcluding RBAC and exporting a kubeconfig File"
+comments_id: 4
 ---
-
-http://localhost:8800/doku.php?id=sirconic:systemadmin:kubernetes#kubeconfig
-https://gauravwadghule.medium.com/how-to-grant-users-to-access-the-kubernetes-cluster-with-a-client-certificate-a1763db2e74a
-
-
 
 # Basic Information for User creation
 
@@ -83,8 +79,12 @@ kubectl delete clusterrole markus-clusterrole
 
 A Rolebinding/Clusterrolebinding binds the earlier created Role to a Rolebinding/Clusterrolebinding. The Binding also includes a [Subject](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects), in our case a `User` (or group, or serviceAccount). 
 
-This user has to be authenticated outside of Kubernetes. We already created a certificate which we will use as authentication. Everything will be linked together in the [kubeconfig](#Combine-the-created-Files-to-a-kubeconfig-File) File.
+The user will inherit the role and has to be authenticated outside of Kubernetes. We already created a certificate which we will use as authentication. Everything will be linked together in the [kubeconfig](#combine-the-created-Files-to-a-kubeconfig-File) File.
 
+```bash
+kubectl create clusterrolebinding markus-clusterrolebinding --clusterrole=markus-clusterrole --user=markus
+kubectl create rolebinding markus-rolebinding --role=markus-role --user=markus
+```
 
 
 # Basic Information for kubeconfig creation
@@ -99,84 +99,95 @@ To create a new kubeconfig File to access your Cluster you need to add 3 parts t
 3. context
     * a context binds a user to a cluster and includes a contextName an can include an Namespace
 
-d
-d
-d
-d
 
-d
-d
-d
-d
-d
-d
+## Combine the created Ressources to a kubeconfig File
 
-d
-d
-d
-d
 
-d
-d
-d
-d
-d
-d
+```bash
+#get the cluster data and save it as a config to a new kubeconfig-markus file
+kubectl config set-cluster $(kubectl config view -o jsonpath='{.clusters[0].name}') --server=$(kubectl config view -o jsonpath='{.clusters[0].cluster.server}') --certificate-authority=/etc/kubernetes/pki/ca.crt --kubeconfig=kubeconfig-markus --embed-certs
 
-d
+#get the certificate + key, correctly encode it and save it to the kubeconfig-markus file
+#you could also use the path to the key/cert if you leave out --embed-certs=true
+kubectl config set-credentials markus --client-certificate=./markus.crt --client-key=./markus.key --embed-certs=true --kubeconfig=kubeconfig-markus
 
-d
-d
-d
-d
+#finally create a context which binds together our user with a cluster and save it to the kubeconfig-markus file
+#if you use a role instead of a clusterrole you need to also add --namespace=custom_namespace
+kubectl config set-context markus-context --user=markus --cluster=$(kubectl config view -o jsonpath='{.clusters[0].name}') --kubeconfig=kubeconfig-markus
 
-d
-d
-d
-d
-d
-d
+#you can create more than one context, so we need to set the correct context
+kubectl config use-context markus-context --kubeconfig=kubeconfig-markus
+```
 
-d
-d
-d
-d
-d
 
-d
-d
-d
-d
-d
-d
+The final result should look like this:
 
-d
+```yaml
+apiVersion: v1
+clusters:
+  - cluster:
+      certificate-authority-data: LS0tLS1CRU....LS0K
+      server: https://cluster-name-api.company.de:6443
+    name: cluster-name
+contexts:
+  - context:
+      cluster: cluster-name
+      user: markus
+    name: cluster-name-markus
+current-context: cluster-name-markus
+kind: Config
+preferences: {}
+users:
+  - name: markus
+    user:
+      client-certificate-data: LS0tLS1CRU...UtLS0tLQo=
+      client-key-data: LS0tLS1C....S0tLS0K
+```
 
-d
-d
-d
-d
 
-d
-d
-d
-d
-d
-d
+Now a simple test if everything works:
 
-d
-d
-d
-d
-d
+```bash
+k get nodes --kubeconfig="kubeconfig-markus"
+```
 
-d
-d
-d
-d
-d
-d
+## configure and use kubeconfig locally
 
-d
-d
-## Combine the created Files to a kubeconfig File
+If you dont use Linux its hardly recommended to use a WSL (Windows Subsystem Linux) Shell. For this go to `Windows-Features` and activate `Windows-Subsystem for Linux`, afterwards install `Ubuntu` via the Microsoft Store.
+
+Now we need to edit the `.bashrc`:
+
+```bash
+vi ~/.bashrc
+export KUBECONFIG="${KUBECONFIG}:/mnt/c/develop/kubeconfig_cluster1.yml:/mnt/c/develop/kubeconfig_cluster2.yml"
+source ~/.bashrc
+```
+
+And if you want, here some useful Aliase:
+
+```bash
+vi ~/.bash_aliases
+alias k=kubectl
+alias usecluster1="kubectl config use cluster-name-markus"
+alias usecluster2="kubectl config use cluster-name-markus2"
+alias ccon="kubectl config current-context"
+source ~/.bashrc
+```
+
+Now how do you use different contexts for different cluster:
+
+```bash
+#show the current context = the current cluster
+kubectl config current-context
+#show all available contexts
+kubectl config get-contexts
+#use a specific context with a specific user
+kubectl config use-context user@cluster-name
+```
+
+
+# Afterwords
+
+I hope this is useful for some of you, if you have question dont hesitate to ask in the Comment section.
+
+Im also still in the learning phase of Kubernetes, so Im open for suggestions for improvement.
