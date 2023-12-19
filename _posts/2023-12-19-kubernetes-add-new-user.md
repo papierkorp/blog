@@ -54,11 +54,11 @@ kubectl edit clusterrole markus-clusterrole #change apiGroups to '*'
 
 For the exact possibilies you should take a look at the kubernetes Documentation:
 
-- Verbs: https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#Operations
-- Ressources: https://kubernetes.io/docs/reference/kubernetes-api/
-    + Workload: https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/
-    + Service: https://kubernetes.io/docs/reference/kubernetes-api/service-resources/
-    + Configs: https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/
+- Verbs: [https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#Operations](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#Operations)
+- Ressources: [https://kubernetes.io/docs/reference/kubernetes-api/](https://kubernetes.io/docs/reference/kubernetes-api/)
+    + Workload: [https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/)
+    + Service: [https://kubernetes.io/docs/reference/kubernetes-api/service-resources/](https://kubernetes.io/docs/reference/kubernetes-api/service-resources/)
+    + Configs: [https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/](https://kubernetes.io/docs/reference/kubernetes-api/config-and-storage-resources/)
 
 If you set up a basic RBAC it can look like this:
 
@@ -79,7 +79,7 @@ kubectl delete clusterrole markus-clusterrole
 
 A Rolebinding/Clusterrolebinding binds the earlier created Role to a Rolebinding/Clusterrolebinding. The Binding also includes a [Subject](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#referring-to-subjects), in our case a `User` (or group, or serviceAccount). 
 
-The user will inherit the role and has to be authenticated outside of Kubernetes. We already created a certificate which we will use as authentication. Everything will be linked together in the [kubeconfig](#combine-the-created-Files-to-a-kubeconfig-File) File.
+The user will inherit the role and has to be authenticated outside of Kubernetes. We already created a certificate which we will use as authentication. Everything will be linked together in the [kubeconfig](#combine-the-created-ressources-to-a-kubeconfig-file) File.
 
 ```bash
 kubectl create clusterrolebinding markus-clusterrolebinding --clusterrole=markus-clusterrole --user=markus

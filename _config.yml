@@ -121,7 +121,7 @@ defaults:
     scope:
       path: "_posts"
     values:
-      display_toc: false
+      display_toc: true
       display_toc2: true
 
 permalink: /posts/:title #remove date from link
