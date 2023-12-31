@@ -58,7 +58,7 @@ make sure to hide the combat_menu after creating it. I would also recommend to m
 After all this add a Script:
 
 
-```python
+```gdscript
 extends CharacterBody2D
 
 class_name character
@@ -230,7 +230,7 @@ Currently all the children will be added manually, in the future they will be dy
 Now add a Script:
 
 
-```python
+```gdscript
 extends Node2D
 
 class_name turn_queue
@@ -284,7 +284,7 @@ func remove_char_from_queue(char: character) -> void:
 
 As for the level we only need a Node2D - `level` Scene, then Instatiate Child Scene - turn_queue and a small Script to initalize the turn_queue:
 
-```python
+```gdscript
 func _ready():
     var turn_queue: turn_queue = get_node("TurnQueue")
     turn_queue.initalize()
