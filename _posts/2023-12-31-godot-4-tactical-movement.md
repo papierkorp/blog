@@ -7,7 +7,7 @@ subtitle: "How to create Grid-Based Tactical Movement with a Mouseclick per Godo
 comments_id: 5
 ---
 
-# Create a Tactical Movement in Godot 4.2
+# Tactical Movement in Godot 4.2
 
 ![Example Overview](/blog/assets/gamedev/godot/tactical_movement_example.png)
 
@@ -166,7 +166,7 @@ func _draw():
 ```
 
 
-#### player
+# Create the moveable Character
 
 - add a `Node2D - moveable_character` node -> you can choose any kind of node, doesnt really matter which one
 - add a `Sprite2D` node
@@ -321,4 +321,3 @@ func _input(event):
 I know I could have posted it on github, but nah so here you go with the zip file:
 
 [Example Godot Project](/blog/assets/gamedev/godot/tactical_movement_example.zip)
-
