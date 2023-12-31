@@ -4,6 +4,7 @@ title: "How to create a Grid Based Tactical Movement base in Godot 4"
 date: 2024-01-01
 tags: gamedev godot howto
 subtitle: "How to create Grid-Based Tactical Movement with a Mouseclick per Godot 4"
+comments_id: 5
 ---
 
 # Create a Tactical Movement in Godot 4.2
