@@ -2,6 +2,7 @@
 layout: post
 title: "How to add Users to a Kubernetes Cluster with a certificate Authentication and export to a kubeconfig file"
 date: 2023-12-19
+last_modified_at: 04.01.2024
 tags: kubernetes howto devops
 subtitle: "Step by Step Tutorial on how to add Users to your Kubernetes-Cluster indcluding RBAC and exporting a kubeconfig File"
 comments_id: 4
@@ -33,12 +34,19 @@ To use certificates as Authentication, we need to first create new Key. Then a C
 ```bash
 openssl genrsa -out markus.key 2048 #create the private Key
 openssl req -new -key markus.key -out markus.csr -subj "/CN=markus/O=testcompany" #create a csr
-sudo openssl x509 -req -in markus.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out markus.crt #use the csr to get a Certificate
+sudo openssl x509 -req -in markus.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out markus.crt -days 180 #use the csr to get a Certificate
 ```
 
 You should savely store the key. While the `.crt` Certificate will be used to authenticate against the cluster.
 
-As far as I know currently we are not able to revoke a once issued Certificate. To deny access to certain User we will go with the deletion of their respective Role/Clusterrole.
+As far as I know currently we are not able to revoke a once issued Certificate. We can only depend on the expiry Date (default is 1 month, can be extended with the -days parameter). To deny access to certain User we will go with the deletion of their respective Role/Clusterrole. 
+
+To check the expiry Date of a Certificate:
+
+```bash
+openssl verify -CAfile /etc/kubernetes/pki/ca.crt markus.crt #check the Certificate against the CA
+openssl x509 -enddate -noout -in markus.crt #check the expiry Date
+```
 
 
 ## create a Role/Clusterrole
