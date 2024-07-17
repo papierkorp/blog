@@ -45,8 +45,7 @@ The final step is to create a Sublime Build, go to: `Tools - Build System - New 
 {
     "target": "wsl_exec",
     "cancel": {"kill": true},
-    <!-- "wsl_cmd": "whoami && pwd && cat /etc/os-release", //to debug if everything is working -->
-    "wsl_cmd": "/usr/local/pandoc-3.2.1/bin/pandoc --verbose --pdf-engine=xelatex --citeproc -o '$file_base_name.pdf' '$file_name' && explorer.exe $(wslpath -w $unix_file_path); explorer.exe $(wslpath -w $unix_file_path/$file_base_name.pdf)", <!-- if you dont want to open the folder/file after finishing, just leave everything behind the && out -->
+    "wsl_cmd": "/usr/local/pandoc-3.2.1/bin/pandoc --verbose --pdf-engine=xelatex --citeproc -o '$file_base_name.pdf' '$file_name' && explorer.exe $(wslpath -w $unix_file_path); explorer.exe $(wslpath -w $unix_file_path/$file_base_name.pdf)",
     "wsl_working_dir": "$unix_file_path"
 }
 ```
