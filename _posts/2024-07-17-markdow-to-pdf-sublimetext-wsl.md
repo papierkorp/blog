@@ -29,8 +29,11 @@ echo 'export PATH=$PATH:/usr/local/pandoc-3.2.1/bin' >> ~/.bashrc
 
 **PDF-Engine**
 
+
 Now we need an PDF-Engine, there are quite a few to choose from but the first one I found after googling was xelatex.
 Straight forward: `sudo apt-get install texlive-xetex`
+
+Take a look at the Pandoc Documentation regarding the [pdf-engine](https://pandoc.org/MANUAL.html#option--pdf-engine).
 
 
 **Sublime WSLBuild Plugin**
