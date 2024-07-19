@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "2 ways to sync your Sublimetext Config with another Device"
-date: 2023-09-18
+date: 2024-07-19
 tags: development-environment howto sublimetext git
 subtitle: "Using GIT and Cloud to sync and backup your Sublimetext Configuration"
 ---
