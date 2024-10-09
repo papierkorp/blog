@@ -82,7 +82,7 @@ footer_links:
   - title: <img src="https://hits.dwyl.com/papierkorp/blog.svg?style=flat-square">
     url: http://hits.dwyl.com/papierkorp/blog
   - title: Feed
-    url: /feed.xml
+    url: /blog/feed.xml
     icon: fa fa-rss
   - title: GitHub
     url: https://github.com/papierkorp
