@@ -1,19 +1,19 @@
 ---
 layout: post
-title: "2 ways to sync your Sublimetext Config with another Device"
+title: '2 ways to sync your Sublimetext Config with another Device'
 date: 2024-07-19
-tags: development-environment howto sublimetext git
-subtitle: "Using GIT and Cloud to sync and backup your Sublimetext Configuration"
+tags: dev-environment howto sublimetext git
+subtitle: 'Using GIT and Cloud to sync and backup your Sublimetext Configuration'
 ---
 
 # What
 
 So I was using Sublime Text at work with my Work Device, as well at home in with my Gaming PC setup.
-I wanted to sync and backup my Sublime Setup. 
+I wanted to sync and backup my Sublime Setup.
 
 In the beginning I just copied my User Folder on a USB Stick and transported this USB between Home and Work :D
 
->a better solution has to be found
+> a better solution has to be found
 
 And there was, in the following I will describe the 2 solutions I used
 
@@ -51,13 +51,10 @@ mkdir ~/AppData/Roaming/'Sublime Text'/Packages/User
 git clone https://github.com/papierkorp/sublimetext.git ~/AppData/Roaming/'Sublime Text'/Packages/User
 ```
 
-
-
 # Cloud
 
 Since I was annoyed with the continous merge conflicts I tried another solution with a Cloud Storage. I still use GIT as a backup.
 First you need some kind of Cloud Provider like OneDrive, GoogleCloud or Dropbox.
-
 
 **Configure Cloud Provider**
 
@@ -87,7 +84,6 @@ mklink /d "C:\Users\Markus\AppData\Roaming\Sublime Text\Packages\User" "C:\Users
 rmdir -recurse "C:\Users\Markus\AppData\Roaming\Sublime Text\Packages\User"
 mklink /d "C:\Users\Markus\AppData\Roaming\Sublime Text\Packages\User" "C:\Users\Markus\OneDrive\Sublime\User"
 ```
-
 
 # Afterwords
 
