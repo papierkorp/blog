@@ -4,6 +4,7 @@ title: "Build a pdf from markdown in sublimetext with WSL"
 date: 2024-07-17
 tags: webdev howto sublimetext wsl
 subtitle: "How to build a pdf File from a markdown file using WSL in Sublimetext"
+comments_id: 1
 ---
 
 # Intro

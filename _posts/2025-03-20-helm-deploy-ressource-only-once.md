@@ -2,8 +2,9 @@
 layout: post
 title: How to deploy a Kubernetes Ressource (configmap) only once and keep the data
 date: 2025-03-20
-tags: kubernetes howto devops
+tags: kubernetes howto devops helm
 subtitle: 'Deploy a Configmap only at the install but keep it after each upgrade.'
+comments_id: 1
 ---
 
 Today I hade the problem that i wanted to install a configmap only once but keep it after each upgrade, which wasnt as easy i thought before.
@@ -13,7 +14,7 @@ Since it took my quite some time to figure this one out, here a short how to:
 
 At first I fell for the mistake of installing the Ressource only once and the leaving it at that like this:
 
-```sxh
+```yaml
 {{- if .Release.IsInstall }}
 kind: ConfigMap
 apiVersion: v1
