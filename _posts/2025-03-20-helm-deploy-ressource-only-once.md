@@ -44,21 +44,27 @@ As far as I found out there are 2 ways to keep the data in helm:
 This is the solution i settled with, i havent tested it yet with huge configmaps but I´m confident it will work as well =).
 
 ```
+{% raw  %}
 {{- $existing_cm := (lookup "v1" "ConfigMap" .Release.Namespace "example-conf") }}
+{% endraw %}
 kind: ConfigMap
 apiVersion: v1
 metadata:
     name: example-conf
     namespace: {{ .Values.namespace }}
 data:
+{% raw  %}
 {{- if $existing_cm }}
 {{- with $existing_cm.data }}
 {{ toYaml . | nindent 2 }}
 {{- end }}
 {{- else }}
+{% endraw %}
   app.yml: |
     use-default: true
+{% raw  %}
 {{- end }}
+{% endraw %}
 ```
 
 ## annotation
@@ -66,7 +72,9 @@ data:
 The disadvantage of this solution is: The configmap is kept even after a helm uinstall and will no longer be managed by helm. Of course it would be deleted after the namespace is removed.
 
 ```
+{% raw  %}
 {{- if .Release.IsInstall }}
+{% endraw %}
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -77,5 +85,7 @@ metadata:
 data:
   app.yml: |
     use-default: true
+{% raw  %}
 {{- end }}
+{% endraw %}
 ```
