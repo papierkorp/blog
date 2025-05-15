@@ -15,17 +15,17 @@ Since it took my quite some time to figure this one out, here a short how to:
 At first I fell for the mistake of installing the Ressource only once and the leaving it at that like this:
 
 ```yaml
-{{- if .Release.IsInstall }}
+{% raw %}{{- if .Release.IsInstall }}{% endraw %}
 kind: ConfigMap
 apiVersion: v1
 metadata:
-{{- end }}
+{% raw %}{{- end }}{% endraw %}
 ---
-{{- if le .Release.Revision 1  }}
+{% raw %}{{- if le .Release.Revision 1  }}{% endraw %}
 kind: ConfigMap
 apiVersion: v1
 metadata:
-{{- end }}
+{% raw %}{{- end }}{% endraw %}
 ```
 
 Unfortunately Helm isnt working like this. Instead helm validates my expression as true and doesnt deploy the configmap. But then, since the configmap is no longer deployed its deleted by helm afterwards since its orphaned.
@@ -43,49 +43,39 @@ As far as I found out there are 2 ways to keep the data in helm:
 
 This is the solution i settled with, i havent tested it yet with huge configmaps but I´m confident it will work as well =).
 
-```
-{% raw  %}
-{{- $existing_cm := (lookup "v1" "ConfigMap" .Release.Namespace "example-conf") }}
-{% endraw %}
+```yaml
+{% raw  %}{{- $existing_cm := (lookup "v1" "ConfigMap" .Release.Namespace "example-conf") }}{% endraw %}
 kind: ConfigMap
 apiVersion: v1
 metadata:
     name: example-conf
     namespace: {{ .Values.namespace }}
 data:
-{% raw  %}
-{{- if $existing_cm }}
+{% raw  %}{{- if $existing_cm }}
 {{- with $existing_cm.data }}
 {{ toYaml . | nindent 2 }}
 {{- end }}
-{{- else }}
-{% endraw %}
+{{- else }}{% endraw %}
   app.yml: |
     use-default: true
-{% raw  %}
-{{- end }}
-{% endraw %}
+{% raw  %}{{- end }}{% endraw %}
 ```
 
 ## annotation
 
 The disadvantage of this solution is: The configmap is kept even after a helm uinstall and will no longer be managed by helm. Of course it would be deleted after the namespace is removed.
 
-```
-{% raw  %}
-{{- if .Release.IsInstall }}
-{% endraw %}
+```yaml
+{% raw  %}{{- if .Release.IsInstall }}{% endraw %}
 kind: ConfigMap
 apiVersion: v1
 metadata:
     name: example-conf
-    namespace: {{ .Values.namespace }}
+    namespace: {% raw %}{{ .Values.namespace }}{% endraw %}
     annotations:
         "helm.sh/resource-policy": keep
 data:
   app.yml: |
     use-default: true
-{% raw  %}
-{{- end }}
-{% endraw %}
+{% raw  %}{{- end }}{% endraw %}
 ```
