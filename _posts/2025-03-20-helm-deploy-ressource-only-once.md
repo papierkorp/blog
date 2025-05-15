@@ -3,7 +3,7 @@ layout: post
 title: How to deploy a Kubernetes Ressource (configmap) only once and keep the data
 date: 2025-03-20
 tags: kubernetes howto devops helm
-subtitle: 'Deploy a Configmap only at the install but keep it after each upgrade.'
+subtitle: "Deploy a Configmap only at the install but keep it after each upgrade."
 comments_id: 1
 ---
 
@@ -43,7 +43,7 @@ As far as I found out there are 2 ways to keep the data in helm:
 
 This is the solution i settled with, i havent tested it yet with huge configmaps but I´m confident it will work as well =).
 
-```yaml
+```
 {{- $existing_cm := (lookup "v1" "ConfigMap" .Release.Namespace "example-conf") }}
 kind: ConfigMap
 apiVersion: v1
@@ -60,11 +60,12 @@ data:
     use-default: true
 {{- end }}
 ```
+
 ## annotation
 
 The disadvantage of this solution is: The configmap is kept even after a helm uinstall and will no longer be managed by helm. Of course it would be deleted after the namespace is removed.
 
-```yaml
+```
 {{- if .Release.IsInstall }}
 kind: ConfigMap
 apiVersion: v1
@@ -78,4 +79,3 @@ data:
     use-default: true
 {{- end }}
 ```
-
