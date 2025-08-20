@@ -34,6 +34,7 @@ description: >-
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://papierkorp.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: papierkorp
+issues_repo: papierkorp/blog
 
 # Build settings
 remote_theme: papierkorp/jekyll-theme-horizon-flow@1.1.0
